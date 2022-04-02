@@ -15,3 +15,34 @@ Include the improved test code in this file.
 
 ## Answer
 
+test smells in class :
+
+JUnit4TestShouldUseAfterAnnotation
+It should have an @After annotation
+\commons-collections-master\src\test\java\org\apache\commons\collections4\iterators\FilterIteratorTest.java 59
+```java
+@Override
+public void tearDown() throws Exception {
+  iterator = null;
+}
+```
+JUnit4TestShouldUseBeforeAnnotation
+
+commons-collections-master\src\test\java\org\apache\commons\collections4\iterators\BoundedIteratorTest.java 50
+It should have an @Before
+```java
+@SuppressWarnings("unchecked")
+@Override
+public void setUp() throws Exception {
+    super.setUp();
+    testList = Arrays.asList((E[]) testArray);
+}
+```
+JUnit4TestShouldUseTestAnnotation
+
+\commons-collections-master\src\test\java\org\apache\commons\collections4\keyvalue\AbstractMapEntryTest.java 121
+
+It should have an @Test or @Ignore because it
+```java
+public abstract void testConstructors();
+```
