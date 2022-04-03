@@ -55,7 +55,7 @@ class BinaryHeap<T> {
 
 	/**
 	 * Add the element at the right place in the binary tree
-	 * @pre the binary tree is 
+	 * @assert the binary tree is sorted
 	 * @param element
 	 */
 	public void push(T element) {
@@ -85,7 +85,6 @@ class BinaryHeap<T> {
 	 * @return
 	 */
 	public int count() {
-		System.out.println(binaryTree.toString());
 		return binaryTree.size();
 	}
 
