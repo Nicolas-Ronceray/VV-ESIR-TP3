@@ -42,4 +42,4 @@ Use the project in [tp3-heap](../code/tp3-heap) to complete this exercise.
 ## Answer
 
 
-2. When analyzing the coverage of our tests, we saw that we had forgot one test in method peek(). We needed to test if the tree is empty, it should return null.
+2. When analyzing the coverage of our tests, we saw that we had forgot one test in method peek(). We needed to test if the tree is empty, it should throw an exception.
