@@ -97,7 +97,7 @@ class BinaryHeapTest {
 		tree.push(1422);
 		tree.push(1);
 
-		assertEquals(0, comp.compare(tree.peek(), 1));
+		assertEquals(1, tree.peek());
 	}
 
 	@Test
@@ -132,6 +132,6 @@ class BinaryHeapTest {
 		tree.push(1422);
 		tree.push(1);
 
-		assertEquals(0, comp.compare(tree.peek(), tree.pop()));
+		assertEquals(1, tree.pop());
 	}
 }
