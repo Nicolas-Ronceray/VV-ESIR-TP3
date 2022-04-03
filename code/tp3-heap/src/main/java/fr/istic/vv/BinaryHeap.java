@@ -2,7 +2,10 @@ package fr.istic.vv;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
+import java.util.NoSuchElementException;
 
 /**
  * 
@@ -12,62 +15,68 @@ import java.util.List;
  */
 class BinaryHeap<T> {
 
-	private ArrayList<T> binaryTree;
+	private LinkedList<T> binaryTree;
 	private Comparator<T> compare;
 
+	/**
+	 * Constructor of a binary heap
+	 * @param comparator : Comparator used to know where to insert
+	 */
 	public BinaryHeap(Comparator<T> comparator) {
-		binaryTree = new ArrayList<T>();
+		binaryTree = new LinkedList<T>();
 		compare = comparator;
 	}
 
-	public T pop() {
-		return null;
+	/**
+	 * Return and remove the minimum element
+	 * 
+	 * @return the minimum element of type T
+	 * @throws NoSuchElementException : The BinaryHeap is empty
+	 */
+	public T pop() throws NoSuchElementException {
+		if (binaryTree.isEmpty()) {
+			throw new NoSuchElementException("The BinaryHeap is empty");
+		}
+		return binaryTree.removeFirst();
 	}
 
 	/**
 	 * Return the minimum element of the binary heap
 	 * 
 	 * @return the minimum T object
+	 * @throws NotSuchElementException 
 	 */
-	public T peek() {
+	public T peek() throws NoSuchElementException {
 		if (binaryTree.isEmpty()) {
-			return null;
+			throw new NoSuchElementException("The BinaryHeap is empty");
 		}
-		return binaryTree.get(0);
+		return binaryTree.getFirst();
 	}
 
+	/**
+	 * Add the element at the right place in the binary tree
+	 * @pre the binary tree is 
+	 * @param element
+	 */
 	public void push(T element) {
-		int parentIndex=(int)Math.floor((this.count()-1)/2);
 		
 		if (binaryTree.isEmpty()) {
 			binaryTree.add(element);
-
-		} else if (compare.compare(element, binaryTree.get((int)Math.floor((this.count()-1)/2))) >= 1) {
-			// if the element to add is greater or equals than its parent,
-			// then it is added because it is still ordered
-			binaryTree.add(element);
-			
-		}else {
-			
-			while(parentIndex>-1) {
-				T current = binaryTree.get(parentIndex);
-				int childIndex= (2*parentIndex)+1;
-				if (compare.compare(element, current) < 1) {
-					binaryTree.set(parentIndex, element);
-					
-					if(childIndex>=this.count()) {
-						binaryTree.add(current);
-					}else {
-						binaryTree.set(childIndex, current);
-					}
-					
+		} else {
+			ListIterator<T> it = binaryTree.listIterator();
+			while (it.hasNext()) {
+				T current = it.next();
+				// if the element is inferior or equal
+				if (compare.compare(element, current) < 0) {
+					it.previous();
+					it.add(element);
+					return;
 				}
-				parentIndex=(int)Math.floor((parentIndex-1)/2);
-
 			}
-			
+			// if the element is superior than all the others it added at the end
+			binaryTree.addLast(element);
 		}
-
+		
 	}
 
 	/**
@@ -76,6 +85,7 @@ class BinaryHeap<T> {
 	 * @return
 	 */
 	public int count() {
+		System.out.println(binaryTree.toString());
 		return binaryTree.size();
 	}
 
