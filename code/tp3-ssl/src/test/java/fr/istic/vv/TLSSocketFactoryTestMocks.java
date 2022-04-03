@@ -38,6 +38,13 @@ public class TLSSocketFactoryTestMocks {
         Mockito.when(mock.getEnabledProtocols()).thenReturn(shuffle(new String[]{"SSLv3", "TLSv1"}));
 		f.prepareSocket(mock);
 		Mockito.verify(mock,Mockito.times(1)).setEnabledProtocols(Mockito.any());
+		Mockito.doAnswer(
+	            func -> {
+	                assertTrue(Arrays.equals(func.getArgument(0), new String[] {"TLSv1.2", "TLSv1.1", "TLSv1", "SSLv3" }));
+	                return null;
+	            }
+	        ).when(mock).setEnabledProtocols(Mockito.any());
+
 	}
 
 	private String[] shuffle(String[] in) {
