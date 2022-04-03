@@ -40,3 +40,8 @@ Use the following steps to design the test suite:
 Use the project in [tp3-heap](../code/tp3-heap) to complete this exercise.
 
 ## Answer
+
+
+2. When analyzing the coverage of our tests, we saw that we had forgot one test in method peek(). We needed to test if the tree is empty, it should throw an exception.
+3. No need to do the Base Choice Coverage because all of our predicates use only one boolean.
+4. With PIT we got 85% mutation coverage on two classes , BinaryHeap and ComparatorSuperior. PIT found two live mutants.
